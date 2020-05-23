@@ -12,7 +12,7 @@ unlink(zip)
 #load data
 data <- read.delim("household_power_consumption.txt",
                    header = TRUE,
-                   sep = ";")
+                   sep = ";",na.strings = "?",stringsAsFactors = FALSE)
 
 #remove unused objects
 rm(zip)
@@ -35,7 +35,7 @@ rm(data)
 
 #create png plot
 png(filename="plot1.png", width = 480, height = 480)
-hist(f_data$Global_active_power/500, col="red", xlab="Global Active Power (kilowatts)")
+hist(f_data$Global_active_power, col="red", xlab="Global Active Power (kilowatts)")
 dev.off()
 
 
