@@ -12,7 +12,7 @@ unlink(zip)
 #load data
 data <- read.delim("household_power_consumption.txt",
                    header = TRUE,
-                   sep = ";")
+                   sep = ";",na.strings = "?",stringsAsFactors = FALSE)
 
 #remove unused objects
 rm(zip)
@@ -39,6 +39,6 @@ f_data <- mutate(f_data, mydatetime = as.POSIXct(strptime(paste(f_data$Date, f_d
 
 #create png plot
 png(filename="plot2.png", width = 480, height = 480)
-with(f_data, plot(as.POSIXct(mydatetime), Global_active_power/500, type="l", xlab = "", ylab = "Global active power (kilowatts)"))
+with(f_data, plot(as.POSIXct(mydatetime), Global_active_power, type="l", xlab = "", ylab = "Global active power (kilowatts)"))
 dev.off()
 
